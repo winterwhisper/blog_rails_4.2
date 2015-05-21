@@ -31,5 +31,9 @@ module Demo
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # generator不自动生成helper及assets相关文件
+    config.generators.assets = false
+    config.generators.helper = false
   end
 end
