@@ -10,10 +10,5 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require jquery_ujs
-//= require turbolinks
-//= require bootstrap
-//= require AdminLTE
-//= require jquery.slimscroll
-//= require fastclick
+//= require html5shiv
+//= require respond
