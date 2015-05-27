@@ -1,9 +1,41 @@
+<% if @posts.present? %>
+  <table class="table">
+    <thead>
+      <th>ID</th>
+      <th>标题</th>
+      <th>评论数</th>
+      <th>创建时间</th>
+      <th>操作</th>
+    </thead>
+    <tbody>
+      <% @posts.each do |post| %>
+        <tr>
+          <td><%= post.id %></td>
+          <td><%= post.title %></td>
+          <td><%#= post.comments.size %></td>
+          <td><%= time_formater(post.created_at) %></td>
+          <td>
+            <%= link_to '编辑', edit_admin_post_path(post), class: 'btn btn-xs btn-default' %>
+            <%= link_to '删除', admin_post_path(post), method: :delete, class: 'btn btn-xs btn-danger', 'data-confirm' => '确定要删除吗？' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  目前还没有文章
+<% end %>
+
 <% content_for :breadcrumb do %>
   <li>
     <%= link_to 'javascript:;' do %>
-      <i class="fa fa-dashboard"></i>
-      仪表盘
+      <i class="fa fa-files-o"></i>
+      所有文章
     <% end %>
   </li>
 <% end %>
-<% content_for :page_title, '仪表盘' %>
+<% content_for :page_title, '所有文章' %>
+<% content_for :box_title, '文章列表' %>
+<% content_for :box_actions do %>
+  <%= link_to '添加文章', new_admin_post_path, class: 'btn btn-default btn-sm' %>
+<% end %>

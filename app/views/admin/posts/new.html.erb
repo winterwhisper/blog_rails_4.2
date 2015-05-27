@@ -1,0 +1,16 @@
+<%= render 'form' %>
+
+<% content_for :breadcrumb do %>
+  <li>
+    <%= link_to admin_posts_path do %>
+      <i class="fa fa-files-o"></i>
+      所有文章
+    <% end %>
+  </li>
+  <li><%= link_to '新建文章', new_admin_post_path %></li>
+<% end %>
+<% content_for :page_title, '新建文章' %>
+<% content_for :box_title, '新建文章' %>
+<% content_for :box_actions do %>
+  <%= link_to '返回', admin_posts_path, class: 'btn btn-default btn-sm' %>
+<% end %>

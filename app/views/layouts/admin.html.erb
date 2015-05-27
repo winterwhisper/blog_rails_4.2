@@ -30,7 +30,27 @@
         <% end %>
       </section>
       <section class="content">
-        <%= yield %>
+        <div class="box">
+          <div class="box-header with-border">
+            <% if content_for?(:box_title) %>
+              <h3 class="box-title"><%= yield :box_title %></h3>
+            <% end %>
+            <% if content_for?(:box_actions) %>
+              <div class="box-tools pull-right"><%= yield :box_actions %></div>
+            <% end %>
+          </div>
+          <div class="box-body">
+            <div class="container-fluid">
+              <div class="row">
+                <%= render 'layouts/admin/flash_message' %>
+                <%= yield %>
+              </div>
+            </div>
+          </div>
+          <% if content_for?(:box_footer) %>
+            <div class="box-footer"><%= yield :box_footer %></div>
+          <% end %>
+        </div>
       </section>
     </div>
     <%= render 'layouts/admin/footer' %>
