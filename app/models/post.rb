@@ -6,4 +6,12 @@ class Post < ActiveRecord::Base
 
   validates_presence_of :title, :body
 
+  after_save :increase_tags_posts_count
+
+  private
+
+    def increase_tags_posts_count
+      Tag.increment_counter(:posts_count, tags.pluck(:id))
+    end
+
 end

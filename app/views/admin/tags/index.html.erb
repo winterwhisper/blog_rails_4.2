@@ -10,7 +10,7 @@
     <% @tags.each do |tag| %>
       <tr>
         <td><%= tag.value %></td>
-        <td><%#= tag.posts.size %></td>
+        <td><%= tag.posts.size %></td>
         <td><%= time_formater(tag.created_at) %></td>
         <td>
           <%= link_to '编辑', edit_admin_tag_path(tag), class: 'btn btn-xs btn-default' %>
