@@ -4,6 +4,7 @@ class Admin::PostsController < Admin::BaseController
 
   def index
     @posts = Post.order('id DESC').page(params[:page])
+    filter_posts_by_tag if params[:tag].present?
   end
 
   def new
@@ -42,6 +43,10 @@ class Admin::PostsController < Admin::BaseController
 
     def post_params
       params.require(:post).permit(:title, :body)
+    end
+
+    def filter_posts_by_tag
+      @posts = @posts.joins(:tags).where('tags.value = ?', params[:tag])
     end
 
 end
