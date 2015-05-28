@@ -47,8 +47,8 @@
           </li>
         </ul>
       </li>
-      <li>
-        <%= link_to 'javascript:;' do %>
+      <li class="<%= params[:controller] == 'admin/comments' ? 'active' : '' %>">
+        <%= link_to admin_comments_path do %>
           <i class='fa fa-comments-o'></i> <span>评论</span>
         <% end %>
       </li>

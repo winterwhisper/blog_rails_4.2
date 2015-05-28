@@ -39,3 +39,6 @@
 <% content_for :box_actions do %>
   <%= link_to '添加文章', new_admin_post_path, class: 'btn btn-default btn-sm' %>
 <% end %>
+<% content_for :box_footer do %>
+  <%= paginate @posts %>
+<% end %>

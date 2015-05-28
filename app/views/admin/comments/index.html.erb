@@ -1,25 +1,42 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Admin Comments</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @admin_comments.each do |admin_comment| %>
+<% if @comments.present? %>
+  <table class="table">
+    <thead>
+    <th>ID</th>
+    <th>用户名</th>
+    <th>Email</th>
+    <th>内容</th>
+    <th>创建时间</th>
+    <th>操作</th>
+    </thead>
+    <tbody>
+    <% @comments.each do |comments| %>
       <tr>
-        <td><%= link_to 'Show', admin_comment %></td>
-        <td><%= link_to 'Edit', edit_admin_comment_path(admin_comment) %></td>
-        <td><%= link_to 'Destroy', admin_comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= comments.id %></td>
+        <td><%= comments.username %></td>
+        <td><%= comments.email %></td>
+        <td><%= comments.body %></td>
+        <td><%= time_formater(comments.created_at) %></td>
+        <td>
+          <%= link_to '删除', admin_comment_path(comments), method: :delete, class: 'btn btn-xs btn-danger', 'data-confirm' => '确定要删除吗？' %>
+        </td>
       </tr>
     <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+<% else %>
+  目前还没有评论
+<% end %>
 
-<br>
-
-<%= link_to 'New Comment', new_admin_comment_path %>
+<% content_for :breadcrumb do %>
+  <li>
+    <%= link_to 'javascript:;' do %>
+      <i class="fa fa-files-o"></i>
+      所有评论
+    <% end %>
+  </li>
+<% end %>
+<% content_for :page_title, '所有评论' %>
+<% content_for :box_title, '评论列表' %>
+<% content_for :box_footer do %>
+  <%= paginate @comments %>
+<% end %>
