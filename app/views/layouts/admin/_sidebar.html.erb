@@ -47,6 +47,27 @@
           </li>
         </ul>
       </li>
+      <li class="treeview <%= params[:controller] == 'admin/tags' ? 'active' : '' %>">
+        <%= link_to 'javascript:;' do %>
+          <i class='fa fa-tags'></i>
+          <span>标签</span>
+          <i class="fa fa-angle-left pull-right"></i>
+        <% end %>
+        <ul class="treeview-menu">
+          <li class="<%= params[:action] == 'index' ? 'active' : '' %>">
+            <%= link_to admin_posts_path do %>
+              <i class='fa fa-circle-o'></i>
+              <span>所有标签</span>
+            <% end %>
+          </li>
+          <li class="<%= params[:action] == 'new' ? 'active' : '' %>">
+            <%= link_to new_admin_post_path do %>
+              <i class='fa fa-circle-o'></i>
+              <span>新建标签</span>
+            <% end %>
+          </li>
+        </ul>
+      </li>
       <li class="<%= params[:controller] == 'admin/comments' ? 'active' : '' %>">
         <%= link_to admin_comments_path do %>
           <i class='fa fa-comments-o'></i> <span>评论</span>
