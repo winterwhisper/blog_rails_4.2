@@ -30,7 +30,7 @@ class Admin::PostsController < Admin::BaseController
   end
 
   def destroy
-    @post.destroy
+    post.destroy
     redirect_to admin_posts_url, notice: '文章删除成功'
   end
 

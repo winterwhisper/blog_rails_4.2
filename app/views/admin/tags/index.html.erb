@@ -1,0 +1,42 @@
+<% if @tags.present? %>
+  <table class="table">
+    <thead>
+    <th>标签内容</th>
+    <th>文章数</th>
+    <th>创建时间</th>
+    <th>操作</th>
+    </thead>
+    <tbody>
+    <% @tags.each do |tag| %>
+      <tr>
+        <td><%= tag.value %></td>
+        <td><%#= tag.posts.size %></td>
+        <td><%= time_formater(tag.created_at) %></td>
+        <td>
+          <%= link_to '编辑', edit_admin_tag_path(tag), class: 'btn btn-xs btn-default' %>
+          <%= link_to '删除', admin_tag_path(tag), method: :delete, class: 'btn btn-xs btn-danger', 'data-confirm' => '确定要删除吗？' %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% else %>
+  目前还没有标签
+<% end %>
+
+<% content_for :breadcrumb do %>
+  <li>
+    <%= link_to 'javascript:;' do %>
+      <i class="fa fa-tags"></i>
+      所有标签
+    <% end %>
+  </li>
+<% end %>
+<% content_for :page_title, '所有标签' %>
+<% content_for :box_title, '标签列表' %>
+<% content_for :box_actions do %>
+  <%= link_to '添加标签', new_admin_tag_path, class: 'btn btn-default btn-sm' %>
+<% end %>
+<% content_for :box_footer do %>
+  <%= paginate @tags %>
+<% end %>

@@ -1,0 +1,16 @@
+<%= render 'form' %>
+
+<% content_for :breadcrumb do %>
+  <li>
+    <%= link_to admin_tags_path do %>
+      <i class="fa fa-tags"></i>
+      所有标签
+    <% end %>
+  </li>
+  <li><%= link_to '编辑标签', edit_admin_tag_path(@tag) %></li>
+<% end %>
+<% content_for :page_title, '编辑标签' %>
+<% content_for :box_title, '编辑标签' %>
+<% content_for :box_actions do %>
+  <%= link_to '返回', admin_tags_path, class: 'btn btn-default btn-sm' %>
+<% end %>
