@@ -79,21 +79,15 @@
         <% end %>
       </li>
       <li class="header">标签</li>
-      <li>
-        <%= link_to 'javascript:;' do %>
-          <i class='fa fa-circle-o text-red'></i> <span>标签1</span>
+      <% if @tags.present? %>
+        <% @tags.each do |tag| %>
+          <li>
+            <%= link_to 'javascript:;' do %>
+              <i class='fa fa-circle-o'></i> <span><%= tag.value %></span>
+            <% end %>
+          </li>
         <% end %>
-      </li>
-      <li>
-        <%= link_to 'javascript:;' do %>
-          <i class='fa fa-circle-o text-blue'></i> <span>标签2</span>
-        <% end %>
-      </li>
-      <li>
-        <%= link_to 'javascript:;' do %>
-          <i class='fa fa-circle-o text-green'></i> <span>标签3</span>
-        <% end %>
-      </li>
+      <% end %>
     </ul>
   </section>
 </aside>
