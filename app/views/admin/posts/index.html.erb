@@ -12,7 +12,7 @@
         <tr>
           <td><%= post.id %></td>
           <td><%= post.title %></td>
-          <td><%#= post.comments.size %></td>
+          <td><%= post.comments.size %></td>
           <td><%= time_formater(post.created_at) %></td>
           <td>
             <%= link_to '编辑', edit_admin_post_path(post), class: 'btn btn-xs btn-default' %>
