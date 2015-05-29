@@ -6,6 +6,7 @@
   <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
   <%= stylesheet_link_tag    'admin', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <%= javascript_include_tag 'admin', 'data-turbolinks-track' => true %>
   <!--[if lt IE 9]>
   <%= javascript_include_tag 'admin_header', 'data-turbolinks-track' => true %>
   <![endif]-->
@@ -55,6 +56,5 @@
     </div>
     <%= render 'layouts/admin/footer' %>
   </div>
-  <%= javascript_include_tag 'admin', 'data-turbolinks-track' => true %>
 </body>
 </html>

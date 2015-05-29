@@ -35,6 +35,8 @@ gem 'kaminari'
 
 group :development do
   gem 'quiet_assets'
+  gem 'pry-byebug'
+  gem 'pry-rails'
 end
 
 group :development, :test do

@@ -1,5 +1,7 @@
 class Tag < ActiveRecord::Base
 
+  SPLIT_STR = %w(, ; ，)
+
   has_many :post_tags
   has_many :posts, through: :post_tags
 

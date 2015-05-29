@@ -17,3 +17,4 @@
 //= require AdminLTE
 //= require jquery.slimscroll
 //= require fastclick
+//= require jquery.tagsinput

@@ -11,5 +11,34 @@
       <%= f.text_area :body, class: 'form-control', placeholder: '请输入文章内容', rows: 20 %>
     </div>
   </div>
+  <%= f.fields_for :tags, @tag do |tf| %>
+    <div class="form-group">
+      <%= tf.label :value, '标签', class: 'col-xs-12 col-sm-1 control-label' %>
+      <div class="col-xs-12 col-sm-11 col-md-10">
+        <%= tf.text_field :value, class: 'form-control' %>
+      </div>
+    </div>
+  <% end %>
   <%= f.submit '提交', class: 'btn btn-success col-sm-offset-1 col-md-offset-1 col-xs-12 col-sm-1' %>
 <% end %>
+
+<script>
+  $("#post_tags_attributes_0_value").tagsInput({
+    'defaultText': '',
+    'height': 'auto',
+    'width': 'auto',
+    'delimiter': new Array(<%= render_tags_input_delimiter %>)
+  });
+</script>
+
+<style>
+  div.tagsinput span.tag {
+    border: 1px solid rgb(210,214,222);
+    background: rgb(244,244,245);
+    color: rgb(68,68,68);
+  }
+
+  div.tagsinput span.tag a {
+    color: rgb(68,68,68);
+  }
+</style>

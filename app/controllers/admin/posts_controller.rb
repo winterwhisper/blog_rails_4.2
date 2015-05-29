@@ -9,6 +9,7 @@ class Admin::PostsController < Admin::BaseController
 
   def new
     @post = Post.new
+    @tag = @post.tags.new
   end
 
   def create
@@ -42,7 +43,7 @@ class Admin::PostsController < Admin::BaseController
     end
 
     def post_params
-      params.require(:post).permit(:title, :body)
+      params.require(:post).permit(:title, :body, tags_attributes: [:value])
     end
 
     def filter_posts_by_tag
