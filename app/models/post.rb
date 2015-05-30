@@ -14,7 +14,7 @@ class Post < ActiveRecord::Base
   private
 
     def split_and_renew_tags
-      tags_value = self.tags.first.value.split(Tag::SPLIT_STR.join(","))
+      tags_value = self.tags.first.value.split(Tag::SPLIT_STR)
       self.tags = []
       tags_value.each { |t| self.tags << Tag.find_or_initialize_by(value: t) }
     end
