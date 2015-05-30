@@ -4,7 +4,7 @@ module ApplicationHelper
     time.strftime("%Y-%m-%d %H:%M:%S")
   end
 
-  def is_obj_has_error?(obj, attr, &block)
+  def is_obj_has_error?(obj, attr)
     obj.errors.has_key?(attr)
   end
 
