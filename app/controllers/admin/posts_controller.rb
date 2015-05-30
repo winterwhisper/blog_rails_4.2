@@ -52,7 +52,7 @@ class Admin::PostsController < Admin::BaseController
       else
         tags = @post.tags
         if tags
-          @tag = tags.pluck(:value).join(", ")
+          @tag = Tag.new(value: tags.pluck(:value).join(Tag::SPLIT_STR))
         else
           init_tag
         end
