@@ -18,6 +18,7 @@ class Admin::PostsController < Admin::BaseController
       redirect_to admin_posts_url, notice: '文章创建成功'
     else
       flash.now[:alert] = '文章创建失败'
+      set_post_tag
       render :new
     end
   end
@@ -31,6 +32,7 @@ class Admin::PostsController < Admin::BaseController
       redirect_to admin_posts_url, notice: '文章更新成功'
     else
       flash.now[:alert] = '文章更新失败'
+      set_post_tag
       render :edit
     end
   end

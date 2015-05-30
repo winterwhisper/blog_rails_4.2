@@ -1,21 +1,24 @@
 <%= form_for([:admin, @post], html: { class: 'form-horizontal' }) do |f| %>
-  <div class="form-group">
+  <div class="form-group <%= render_form_error_class(@post, :title) %>">
     <%= f.label :title, '标题', class: 'col-xs-12 col-sm-1 control-label' %>
     <div class="col-xs-12 col-sm-11 col-md-10">
       <%= f.text_field :title, class: 'form-control', placeholder: '请输入标题' %>
+      <%= render_form_error_message(@post, :title) %>
     </div>
   </div>
-  <div class="form-group">
+  <div class="form-group <%= render_form_error_class(@post, :body) %>">
     <%= f.label :body, '内容', class: 'col-xs-12 col-sm-1 control-label' %>
     <div class="col-xs-12 col-sm-11 col-md-10">
       <%= f.text_area :body, class: 'form-control', placeholder: '请输入文章内容', rows: 20 %>
+      <%= render_form_error_message(@post, :body) %>
     </div>
   </div>
   <%= f.fields_for :tags, @tag do |tf| %>
-    <div class="form-group">
+    <div class="form-group <%= render_form_error_class(@tag, :value) %>">
       <%= tf.label :value, '标签', class: 'col-xs-12 col-sm-1 control-label' %>
       <div class="col-xs-12 col-sm-11 col-md-10">
         <%= tf.text_field :value, class: 'form-control' %>
+        <%= render_form_error_message(@tag, :value) %>
       </div>
     </div>
   <% end %>
