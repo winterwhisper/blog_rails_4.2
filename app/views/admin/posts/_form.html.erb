@@ -17,7 +17,7 @@
     <div class="form-group <%= render_form_error_class(@tag, :value) %>">
       <%= tf.label :value, '标签', class: 'col-xs-12 col-sm-1 control-label' %>
       <div class="col-xs-12 col-sm-11 col-md-10">
-        <%= tf.text_field :value, class: 'form-control' %>
+        <%= tf.text_field :value, class: 'form-control', id: 'tags-field' %>
         <%= render_form_error_message(@tag, :value) %>
       </div>
     </div>
@@ -26,22 +26,10 @@
 <% end %>
 
 <script>
-  $("#post_tags_attributes_0_value").tagsInput({
+  $("#tags-field").tagsInput({
     'defaultText': '',
     'height': 'auto',
     'width': 'auto',
     'delimiter': new Array("<%= Tag::SPLIT_STR %>")
   });
 </script>
-
-<style>
-  div.tagsinput span.tag {
-    border: 1px solid rgb(210,214,222);
-    background: rgb(244,244,245);
-    color: rgb(68,68,68);
-  }
-
-  div.tagsinput span.tag a {
-    color: rgb(68,68,68);
-  }
-</style>

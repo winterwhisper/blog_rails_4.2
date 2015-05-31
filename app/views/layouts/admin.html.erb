@@ -11,7 +11,7 @@
   <%= javascript_include_tag 'legend', 'data-turbolinks-track' => true %>
   <![endif]-->
 </head>
-<body class="skin-black-light sidebar-mini">
+<body class="skin-black-light sidebar-mini" id='<%= "#{controller_name}-#{action_name}" %>'>
   <div class="wrapper">
     <%= render 'layouts/admin/header' %>
     <%= render 'layouts/admin/sidebar' %>

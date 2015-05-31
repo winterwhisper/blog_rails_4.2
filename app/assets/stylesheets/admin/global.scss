@@ -1,0 +1,15 @@
+/* 修改progress-bar的颜色 */
+html.turbolinks-progress-bar::before {
+  background-color: #999da5 !important;
+}
+
+/* 修改tagsinput的标签样式 */
+div.tagsinput span.tag {
+  border: 1px solid #D2D6DE;
+  background: #F4F4F5;
+  color: #444444;
+}
+
+div.tagsinput span.tag a {
+  color: #444444;
+}

@@ -16,5 +16,5 @@
  *= require AdminLTE
  *= require skin-black-light
  *= require jquery.tagsinput
- *= require_self
+ *= require_tree ./admin
  */

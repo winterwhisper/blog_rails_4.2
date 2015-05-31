@@ -19,3 +19,4 @@
 //= require jquery.slimscroll
 //= require fastclick
 //= require jquery.tagsinput
+//= require_tree ./admin
