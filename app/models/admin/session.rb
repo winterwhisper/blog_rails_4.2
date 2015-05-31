@@ -3,7 +3,7 @@ class Admin::Session
   include ActiveModel::Conversion
   include ActiveModel::Validations
 
-  attr_accessor :name, :password, :user, :remember_me
+  attr_accessor :name, :password, :admin, :remember_me
 
   validates_presence_of :name, :password
 
@@ -13,15 +13,19 @@ class Admin::Session
 
   def save
     if valid?
-      if _user = User.find_by_name(name)
-        if _user.authenticate(password)
-          self.user = _user
+      if _admin = Admin.find_by_name(name)
+        if _admin.authenticate(password)
+          self.admin = _admin
+          if remember_me
+
+          end
+          true
         else
-          self.errors.add(:password, 'invalid password.')
+          self.errors.add(:password, '密码错误')
           false
         end
       else
-        self.errors.add(:name, 'invalid name.')
+        self.errors.add(:name, '用户名错误')
         false
       end
     end
