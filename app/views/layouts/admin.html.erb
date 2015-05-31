@@ -5,10 +5,10 @@
   <title>AdminLTE 2 | Dashboard</title>
   <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
   <%= csrf_meta_tags %>
-  <%= stylesheet_link_tag    'admin', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'admin', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'admin', media: 'all', 'data-turbolinks-track': true %>
+  <%= javascript_include_tag 'admin', 'data-turbolinks-track': true %>
   <!--[if lt IE 9]>
-  <%= javascript_include_tag 'legend', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'legend', 'data-turbolinks-track': true %>
   <![endif]-->
 </head>
 <body class="skin-black-light sidebar-mini" id='<%= "#{controller_name}-#{action_name}" %>'>
@@ -40,12 +40,8 @@
             <% end %>
           </div>
           <div class="box-body">
-            <div class="container-fluid">
-              <div class="row">
-                <%= render 'layouts/admin/flash_message' %>
-                <%= yield %>
-              </div>
-            </div>
+            <%= render 'layouts/admin/flash_message' %>
+            <%= yield %>
           </div>
           <% if content_for?(:box_footer) %>
             <div class="box-footer"><%= yield :box_footer %></div>
