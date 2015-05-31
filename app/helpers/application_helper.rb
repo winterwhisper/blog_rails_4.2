@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def time_formater(time)
-    time.strftime("%Y-%m-%d %H:%M:%S")
+    time.strftime('%Y-%m-%d %H:%M:%S')
   end
 
   def is_obj_has_error?(obj, attr)
