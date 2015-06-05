@@ -3,12 +3,13 @@ class Admin::PostsController < Admin::BaseController
   before_action :set_post, only: [:edit, :update, :destroy]
 
   def index
-    @posts = Post.order('id DESC').page(params[:page])
+    @posts = policy_scope(Post).page(params[:page])
     filter_posts_by_tag if params[:tag].present?
   end
 
   def new
     @post = Post.new
+    authorize @post
     set_post_tag
   end
 
