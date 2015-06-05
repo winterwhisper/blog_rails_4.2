@@ -13,25 +13,28 @@ class Admin::TagsController < Admin::BaseController
   def create
     @tag = Tag.create(tag_params)
     if @tag.save
-      redirect_to admin_tags_url, notice: '标签创建成功'
+      flash[:success] = '标签创建成功'
+      redirect_to admin_tags_url
     else
-      flash.now[:alert] = '标签创建失败'
+      flash.now[:danger] = '标签创建失败'
       render :new
     end
   end
 
   def update
     if @tag.update_attributes(tag_params)
-      redirect_to admin_tags_url, notice: '标签修改成功'
+      flash[:success] = '标签修改成功'
+      redirect_to admin_tags_url
     else
-      flash.now[:alert] = '标签修改失败'
+      flash.now[:danger] = '标签修改失败'
       render :edit
     end
   end
 
   def destroy
     @tag.destroy
-    redirect_to admin_tags_url, notice: '标签删除成功'
+    flash[:success] = '标签删除成功'
+    redirect_to admin_tags_url
   end
 
   private

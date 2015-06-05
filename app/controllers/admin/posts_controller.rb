@@ -15,9 +15,10 @@ class Admin::PostsController < Admin::BaseController
   def create
     @post = Post.new(post_params)
     if @post.save
-      redirect_to admin_posts_url, notice: '文章创建成功'
+      flash[:success] = '文章创建成功'
+      redirect_to admin_posts_url
     else
-      flash.now[:alert] = '文章创建失败'
+      flash.now[:danger] = '文章创建失败'
       set_post_tag
       render :new
     end
@@ -29,9 +30,10 @@ class Admin::PostsController < Admin::BaseController
 
   def update
     if @post.update_attributes(post_params)
-      redirect_to admin_posts_url, notice: '文章更新成功'
+      flash[:success] = '文章更新成功'
+      redirect_to admin_posts_url
     else
-      flash.now[:alert] = '文章更新失败'
+      flash.now[:danger] = '文章更新失败'
       set_post_tag
       render :edit
     end
@@ -39,7 +41,8 @@ class Admin::PostsController < Admin::BaseController
 
   def destroy
     post.destroy
-    redirect_to admin_posts_url, notice: '文章删除成功'
+    flash[:success] = '文章删除成功'
+    redirect_to admin_posts_url
   end
 
   private

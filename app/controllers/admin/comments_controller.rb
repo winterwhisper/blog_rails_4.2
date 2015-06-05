@@ -7,7 +7,8 @@ class Admin::CommentsController < Admin::BaseController
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
-    redirect_to admin_comments_url, notice: '评论删除成功'
+    flash[:success] = '评论删除成功'
+    redirect_to admin_comments_url
   end
 
 end

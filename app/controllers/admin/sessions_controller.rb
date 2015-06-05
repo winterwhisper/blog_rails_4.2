@@ -11,16 +11,18 @@ class Admin::SessionsController < Admin::BaseController
     if @session.save
       log_in @session.admin
       remember @session.admin if remember_me?
-      redirect_to admin_posts_url, notice: '登录成功'
+      flash[:success] = '登录成功'
+      redirect_to admin_posts_url
     else
-      flash.now[:alert] = '登录失败'
+      flash.now[:danger] = '登录失败'
       render :new
     end
   end
 
   def destroy
     log_out current_admin
-    redirect_to admin_login_url, notice: '退出成功'
+    flash[:success] = '退出成功'
+    redirect_to admin_login_url
   end
 
   private
