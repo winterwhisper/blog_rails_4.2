@@ -1,5 +1,7 @@
 class Admin::Session
 
+  REMEMBER_ME = '1'
+
   include ActiveModel::Conversion
   include ActiveModel::Validations
 
@@ -13,12 +15,9 @@ class Admin::Session
 
   def save
     if valid?
-      if _admin = Admin.find_by_name(name)
-        if _admin.authenticate(password)
-          self.admin = _admin
-          if remember_me
-
-          end
+      if admin = Admin.find_by_name(name)
+        if admin.authenticate(password)
+          self.admin = admin
           true
         else
           self.errors.add(:password, '密码错误')

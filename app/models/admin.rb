@@ -1,3 +1,37 @@
 class Admin < ActiveRecord::Base
+
   has_secure_password
+
+  attr_accessor :remember_token
+
+  validates_uniqueness_of :name
+
+  def remember
+    self.remember_token = Admin.generate_token
+    update_attribute :remember_digest, Admin.digest(remember_token)
+  end
+
+  def authenticated?(remember_token)
+    BCrypt::Password.new(remember_digest).is_password?(remember_token)
+  end
+
+  def forget
+    update_attribute :remember_digest, nil
+  end
+
+  class << self
+
+    def generate_token
+      SecureRandom.urlsafe_base64
+    end
+
+    def digest(str)
+      cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
+                                                    BCrypt::Engine.cost
+      BCrypt::Password.create(str, cost: cost)
+    end
+
+  end
+
+
 end

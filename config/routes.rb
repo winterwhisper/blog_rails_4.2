@@ -6,9 +6,9 @@ Rails.application.routes.draw do
 
     resource :sessions, only: [:new, :create, :destroy]
     controller :sessions do
-      get :sign_in, to: :new
-      post :sign_in, to: :create
-      delete :sign_out, to: :destroy
+      get :login, to: :new
+      post :login, to: :create
+      delete :logout, to: :destroy
     end
   end
 end

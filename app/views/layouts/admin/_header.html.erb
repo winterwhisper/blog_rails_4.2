@@ -14,7 +14,7 @@
         <li class="dropdown user user-menu">
           <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
             <img src="" class="user-image" alt="User Image"/>
-            <span class="hidden-xs">winter whisper</span>
+            <span class="hidden-xs"><%= current_admin.name %></span>
           </a>
           <ul class="dropdown-menu">
             <li class="user-footer">
@@ -23,7 +23,7 @@
                 <a href="javascript:;" class="btn btn-default btn-flat">修改密码</a>
               </div>
               <div class="pull-right">
-                <a href="javascript:;" class="btn btn-default btn-flat">退出</a>
+                <%= link_to '退出', admin_logout_path, method: :delete, class: 'btn btn-default btn-flat' %>
               </div>
             </li>
           </ul>
