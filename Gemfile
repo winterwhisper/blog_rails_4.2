@@ -42,13 +42,15 @@ group :development do
   # 过滤日志里静态文件相关的日志
   gem 'quiet_assets'
   # debug
-  gem 'pry-byebug'
-  gem 'pry-rails'
+  unless ENV["RM_INFO"]
+    gem 'pry-byebug'
+    gem 'pry-rails'
+  end
 end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+  gem 'byebug' unless ENV["RM_INFO"]
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
