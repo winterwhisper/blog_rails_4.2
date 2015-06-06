@@ -23,17 +23,17 @@ class ApplicationPolicy
     create?
   end
 
-  # def update?
-  #   false
-  # end
+  def update?
+    true
+  end
+
+  def edit?
+    update?
+  end
   #
-  # def edit?
-  #   update?
-  # end
-  #
-  # def destroy?
-  #   false
-  # end
+  def destroy?
+    true
+  end
 
   # def scope
   #   Pundit.policy_scope!(user, record.class)
@@ -43,6 +43,7 @@ class ApplicationPolicy
     attr_reader :user, :scope
 
     def initialize(user, scope)
+      raise Pundit::NotAuthorizedError, '您必须先登录才能进行此操作' unless user
       @user = user
       @scope = scope
     end

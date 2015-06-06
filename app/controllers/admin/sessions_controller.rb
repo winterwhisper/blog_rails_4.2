@@ -2,6 +2,8 @@ class Admin::SessionsController < Admin::BaseController
 
   layout 'admin_login'
 
+  skip_after_action :verify_authorized, only: [:new, :create]
+
   def new
     @session = Admin::Session.new
   end
@@ -20,6 +22,7 @@ class Admin::SessionsController < Admin::BaseController
   end
 
   def destroy
+    authorize :session, :destroy?
     log_out current_admin
     flash[:success] = '退出成功'
     redirect_to admin_login_url

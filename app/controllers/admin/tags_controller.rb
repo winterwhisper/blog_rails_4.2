@@ -1,17 +1,13 @@
 class Admin::TagsController < Admin::BaseController
 
-  before_action :set_tag, only: [:edit, :update, :destroy]
+  before_action :set_tag, except: :index
+  before_action :authorize_tag, except: :index
 
   def index
-    @tags = Tag.page(params[:page])
-  end
-
-  def new
-    @tag = Tag.new
+    @tags = policy_scope(Tag).page(params[:page])
   end
 
   def create
-    @tag = Tag.create(tag_params)
     if @tag.save
       flash[:success] = '标签创建成功'
       redirect_to admin_tags_url
@@ -40,7 +36,11 @@ class Admin::TagsController < Admin::BaseController
   private
 
     def set_tag
-      @tag = Tag.find(params[:id])
+      if params[:id]
+        @tag = Tag.find(params[:id])
+      else
+        @tag = params[:tag] ? Tag.new(tag_params) : Tag.new
+      end
     end
 
     def tag_params

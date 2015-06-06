@@ -1,20 +1,15 @@
 class Admin::PostsController < Admin::BaseController
 
-  before_action :set_post, only: [:edit, :update, :destroy]
+  before_action :set_post, except: :index
+  before_action :authorize_post, except: :index
+  before_action :set_post_tag, only: [:new, :edit]
 
   def index
     @posts = policy_scope(Post).page(params[:page])
     filter_posts_by_tag if params[:tag].present?
   end
 
-  def new
-    @post = Post.new
-    authorize @post
-    set_post_tag
-  end
-
   def create
-    @post = Post.new(post_params)
     if @post.save
       flash[:success] = '文章创建成功'
       redirect_to admin_posts_url
@@ -23,10 +18,6 @@ class Admin::PostsController < Admin::BaseController
       set_post_tag
       render :new
     end
-  end
-
-  def edit
-    set_post_tag
   end
 
   def update
@@ -41,7 +32,7 @@ class Admin::PostsController < Admin::BaseController
   end
 
   def destroy
-    post.destroy
+    @post.destroy
     flash[:success] = '文章删除成功'
     redirect_to admin_posts_url
   end
@@ -49,7 +40,15 @@ class Admin::PostsController < Admin::BaseController
   private
 
     def set_post
-      @post = Post.find(params[:id])
+      if params[:id]
+        @post = Post.find(params[:id])
+      else
+        @post = params[:post] ? Post.new(post_params) : Post.new
+      end
+    end
+
+    def authorize_post
+      authorize @post
     end
 
     def set_post_tag
