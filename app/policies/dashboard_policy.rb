@@ -5,7 +5,7 @@ class DashboardPolicy < Struct.new(:user, :dashboard)
     super
   end
 
-  def show?
+  def home?
     true
   end
 
