@@ -7,13 +7,13 @@ Rails.application.routes.draw do
 
     resource :sessions, only: [:new, :create, :destroy]
     controller :sessions do
-      get :login, to: :new
-      post :login, to: :create
-      delete :logout, to: :destroy
+      get :login, action: :new
+      post :login, action: :create
+      delete :logout, action: :destroy
     end
 
     controller :dashboard do
-      get :home, to: :home
+      get :home, action: :home
     end
   end
 end
