@@ -2,6 +2,10 @@ class Admin::SessionsController < Admin::BaseController
 
   layout 'admin_login'
 
+  before_action :authorize_session
+
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
   def new
     @session = Admin::Session.new
   end
@@ -29,6 +33,15 @@ class Admin::SessionsController < Admin::BaseController
 
     def session_params
       params.require(:session).permit(:name, :password)
+    end
+
+    def authorize_session
+      authorize(:session, "#{action_name}?".to_sym)
+    end
+
+    def user_not_authorized(exception)
+      flash[:warning] = exception.message
+      redirect_to request.referrer || admin_root_url
     end
 
 end

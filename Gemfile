@@ -24,7 +24,10 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+# 分页
 gem 'kaminari'
+# 权限管理
+gem 'pundit'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
@@ -36,14 +39,18 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'capistrano-rails', group: :development
 
 group :development do
+  # 过滤日志里静态文件相关的日志
   gem 'quiet_assets'
-  gem 'pry-byebug'
-  gem 'pry-rails'
+  # debug
+  unless ENV["RM_INFO"]
+    gem 'pry-byebug'
+    gem 'pry-rails'
+  end
 end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+  gem 'byebug' unless ENV["RM_INFO"]
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
