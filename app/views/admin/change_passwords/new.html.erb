@@ -1,0 +1,12 @@
+<%= render 'form' %>
+
+<% content_for :breadcrumb do %>
+  <li>
+    <%= link_to 'javascript:;' do %>
+      <i class="glyphicon glyphicon-lock"></i>
+      修改密码
+    <% end %>
+  </li>
+<% end %>
+<% content_for :page_title, '修改密码' %>
+<% content_for :box_title, '修改密码' %>
