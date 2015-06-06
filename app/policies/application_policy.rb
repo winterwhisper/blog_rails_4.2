@@ -30,7 +30,7 @@ class ApplicationPolicy
   def edit?
     update?
   end
-  
+
   def destroy?
     true
   end
@@ -48,8 +48,8 @@ class ApplicationPolicy
       @scope = scope
     end
 
-    # def resolve
-    #   scope
-    # end
+    def resolve
+      scope.order('id DESC')
+    end
   end
 end
