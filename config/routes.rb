@@ -11,6 +11,9 @@ Rails.application.routes.draw do
       post :login, action: :create
       delete :logout, action: :destroy
     end
+    resource :change_passwords, only: [:new, :create],
+                                path_names: { new: '' },
+                                path: :change_password
 
     controller :dashboard do
       get :home, action: :home
