@@ -30,7 +30,7 @@ class ApplicationPolicy
   def edit?
     update?
   end
-  #
+  
   def destroy?
     true
   end

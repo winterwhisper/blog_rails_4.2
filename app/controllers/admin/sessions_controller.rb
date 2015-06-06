@@ -2,7 +2,9 @@ class Admin::SessionsController < Admin::BaseController
 
   layout 'admin_login'
 
-  skip_after_action :verify_authorized, only: [:new, :create]
+  before_action :authorize_session
+
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   def new
     @session = Admin::Session.new
@@ -22,7 +24,6 @@ class Admin::SessionsController < Admin::BaseController
   end
 
   def destroy
-    authorize :session, :destroy?
     log_out current_admin
     flash[:success] = '退出成功'
     redirect_to admin_login_url
@@ -32,6 +33,15 @@ class Admin::SessionsController < Admin::BaseController
 
     def session_params
       params.require(:session).permit(:name, :password)
+    end
+
+    def authorize_session
+      authorize(:session, "#{action_name}?".to_sym)
+    end
+
+    def user_not_authorized(exception)
+      flash[:warning] = exception.message
+      redirect_to request.referrer || admin_root_url
     end
 
 end
