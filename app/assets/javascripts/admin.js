@@ -19,4 +19,5 @@
 //= require jquery.slimscroll
 //= require fastclick
 //= require jquery.tagsinput
+//= require bootstrap-markdown
 //= require_tree ./admin

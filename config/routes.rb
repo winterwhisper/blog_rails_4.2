@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  # 前台
+  resources :posts, only: [:show]
+
+  # 后台
   namespace :admin, path: :console do
     root to: 'dashboard#home'
     resources :posts, except: [:show]

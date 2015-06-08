@@ -37,3 +37,5 @@ module Demo
     config.generators.helper = false
   end
 end
+
+require 'markdown_parser'

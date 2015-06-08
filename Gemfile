@@ -32,6 +32,8 @@ gem 'pundit'
 gem 'carrierwave'
 # 图片裁剪
 gem 'mini_magick'
+# markdown parser
+gem 'redcarpet'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
