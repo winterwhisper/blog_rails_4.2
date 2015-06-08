@@ -4,6 +4,13 @@ Rails.application.routes.draw do
     resources :posts, except: [:show]
     resources :comments, only: [:index, :destroy]
     resources :tags, except: [:show]
+    resources :admins, only: [:show, :edit, :update]
+    controller :admins do
+      get :profile, action: :show
+      get 'profile/edit', action: :edit
+      put :profile, action: :update
+      patch :profile, action: :update
+    end
 
     resource :sessions, only: [:new, :create, :destroy]
     controller :sessions do
