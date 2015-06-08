@@ -27,3 +27,5 @@ bower_components
 
 .ruby-gemset
 .ruby-version
+
+public/uploads
