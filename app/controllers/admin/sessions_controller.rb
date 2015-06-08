@@ -16,7 +16,7 @@ class Admin::SessionsController < Admin::BaseController
       log_in @session.admin
       remember @session.admin if remember_me?
       flash[:success] = '登录成功'
-      redirect_to admin_posts_url
+      redirect_to admin_root_url
     else
       flash.now[:danger] = '登录失败'
       render :new
