@@ -30,6 +30,8 @@ gem 'kaminari'
 gem 'pundit'
 # 文件上传
 gem 'carrierwave'
+# 图片裁剪
+gem 'mini_magick'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
