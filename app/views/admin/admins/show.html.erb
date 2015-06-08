@@ -1,0 +1,54 @@
+<div class="row mt20">
+  <div class="col-sm-offset-1 col-sm-1">
+    Id
+  </div>
+  <div class="col-sm-9">
+    <%= current_admin.id %>
+  </div>
+</div>
+<div class="row mt20">
+  <div class="col-sm-offset-1 col-sm-1">
+    用户名
+  </div>
+  <div class="col-sm-9">
+    <%= current_admin.name %>
+  </div>
+</div>
+<div class="row mt20">
+  <div class="col-sm-offset-1 col-sm-1">
+    昵称
+  </div>
+  <div class="col-sm-9">
+    <%= current_admin.nickname %>
+  </div>
+</div>
+<div class="row mt20 mb20">
+  <div class="col-sm-offset-1 col-sm-1">
+    电子邮箱
+  </div>
+  <div class="col-sm-9">
+    <%= current_admin.email %>
+  </div>
+</div>
+<div class="row mt20">
+  <div class="col-sm-offset-1 col-sm-1 mb20" style="<%= current_admin.avatar? ? 'line-height: 160px' : '' %>">
+    头像
+  </div>
+  <div class="col-sm-9">
+    <%= image_tag current_admin.avatar_url(:thumb), class: 'avatar' %>
+  </div>
+</div>
+
+<% content_for :breadcrumb do %>
+  <li>
+    <%= link_to 'javascript:;' do %>
+      <i class="fa fa-user"></i>
+      用户资料
+    <% end %>
+  </li>
+<% end %>
+<% content_for :page_title, '用户资料' %>
+<% content_for :box_title, '用户资料' %>
+<% content_for :box_actions do %>
+  <%= link_to '修改', admin_profile_edit_path, class: 'btn btn-default btn-sm' %>
+<% end %>

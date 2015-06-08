@@ -1,10 +1,16 @@
 class Admin < ActiveRecord::Base
 
+  mount_uploader :avatar, AvatarUploader
+
   has_secure_password
 
   attr_accessor :remember_token
 
   validates_uniqueness_of :name
+  validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+  validates_uniqueness_of :email, case_sensitive: false
+
+  before_save :downcase_email
 
   def remember
     self.remember_token = Admin.generate_token
@@ -31,6 +37,12 @@ class Admin < ActiveRecord::Base
       BCrypt::Password.create(str, cost: cost)
     end
 
+  end
+
+  private
+
+  def downcase_email
+    self.email = email.downcase
   end
 
 

@@ -13,13 +13,20 @@
       <ul class="nav navbar-nav">
         <li class="dropdown user user-menu">
           <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-            <img src="" class="user-image" alt="User Image"/>
+            <%= image_tag current_admin.avatar_url(:thumb), class: 'user-image', alt: "User Image" %>
             <span class="hidden-xs"><%= current_admin.name %></span>
           </a>
           <ul class="dropdown-menu">
+            <li class="user-header">
+              <%= image_tag current_admin.avatar_url(:thumb), class: 'img-circle', alt: "User Image" %>
+              <p>
+                <%= current_admin.nickname %>
+                <small><%= current_admin.email %></small>
+              </p>
+            </li>
             <li class="user-footer">
               <div class="pull-left">
-                <a href="javascript:;" class="btn btn-default btn-flat">用户资料</a>
+                <%= link_to '用户资料', admin_profile_path, class: 'btn btn-default btn-flat' %>
                 <%= link_to '修改密码', new_admin_change_passwords_path, class: "btn btn-default btn-flat" %>
               </div>
               <div class="pull-right">

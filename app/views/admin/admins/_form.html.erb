@@ -1,0 +1,44 @@
+<%= form_for([:admin, current_admin], html: { class: 'form-horizontal', multipart: true }) do |f| %>
+  <div class="form-group">
+    <%= f.label :id, 'Id', class: 'col-xs-12 col-sm-1 control-label' %>
+    <div class="col-xs-12 col-sm-11 col-md-10">
+      <%= f.text_field :id, class: 'form-control', disabled: 'disabled' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :name, '用户名', class: 'col-xs-12 col-sm-1 control-label' %>
+    <div class="col-xs-12 col-sm-11 col-md-10">
+      <%= f.text_field :name, class: 'form-control', disabled: 'disabled' %>
+    </div>
+  </div>
+  <div class="form-group <%= render_form_error_class(current_admin, :nickname) %>">
+    <%= f.label :nickname, '昵称', class: 'col-xs-12 col-sm-1 control-label' %>
+    <div class="col-xs-12 col-sm-11 col-md-10">
+      <%= f.text_field :nickname, class: 'form-control', placeholder: '请输入昵称' %>
+      <%= render_form_error_message(current_admin, :nickname) %>
+    </div>
+  </div>
+  <div class="form-group <%= render_form_error_class(current_admin, :email) %>">
+    <%= f.label :email, 'Email', class: 'col-xs-12 col-sm-1 control-label' %>
+    <div class="col-xs-12 col-sm-11 col-md-10">
+      <%= f.text_field :email, class: 'form-control', placeholder: '请输入Email' %>
+      <%= render_form_error_message(current_admin, :email) %>
+    </div>
+  </div>
+  <div class="form-group <%= render_form_error_class(current_admin, :avatar) %>">
+    <%= f.label :avatar, '头像', class: 'col-xs-12 col-sm-1 control-label', style: current_admin.avatar? ? 'line-height: 179px' : '' %>
+    <div class="col-xs-12 col-sm-11 col-md-10">
+      <%= image_tag current_admin.avatar_url(:thumb), class: 'avatar form-avatar mb10' if current_admin.avatar? %>
+      <%= f.file_field :avatar, class: 'form-control', placeholder: '请输入标题' %>
+      <%= f.hidden_field :avatar_cache %>
+      <%= render_form_error_message(current_admin, :avatar) %>
+      <% if current_admin.avatar? %>
+        <label class="mt10">
+          <%= f.check_box :remove_avatar %>
+          删除头像
+        </label>
+      <% end %>
+    </div>
+  </div>
+  <%= f.submit '提交', class: 'btn btn-success col-sm-offset-1 col-md-offset-1 col-xs-12 col-sm-1' %>
+<% end %>
