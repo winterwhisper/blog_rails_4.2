@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>AdminLTE 2 | Dashboard</title>
+  <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag 'admin', media: 'all', 'data-turbolinks-track': true %>
+  <%= javascript_include_tag 'admin', 'data-turbolinks-track': true %>
+  <!--[if lt IE 9]>
+    <%= javascript_include_tag 'legend', 'data-turbolinks-track': true %>
+  <![endif]-->
+</head>
+<body class="skin-black-light sidebar-mini" id='<%= "#{controller_name}-#{action_name}" %>'>
+<div class="wrapper">
+  <%= render 'layouts/admin/header' %>
+  <%= render 'layouts/admin/sidebar' %>
+  <div class="content-wrapper">
+    <section class="content-header">
+      <h1>
+        <% if content_for?(:page_title) %>
+          <%= yield :page_title %>
+          <% if content_for?(:page_desc) %>
+            <small><%= yield :page_desc %></small>
+          <% end %>
+        <% end %>
+      </h1>
+      <% if content_for?(:breadcrumb) %>
+        <ol class="breadcrumb"><%= yield :breadcrumb %></ol>
+      <% end %>
+    </section>
+    <section class="content">
+      <%= yield %>
+    </section>
+  </div>
+  <%= render 'layouts/admin/footer' %>
+</div>
+</body>
+</html>

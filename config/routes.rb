@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :posts, except: [:show]
     resources :comments, only: [:index, :destroy]
     resources :tags, except: [:show]
+    resources :users
     resources :admins, only: [:show, :edit, :update]
     controller :admins do
       get :profile, action: :show

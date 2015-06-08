@@ -1,0 +1,13 @@
+<% content_for :breadcrumb do %>
+  <li>
+    <%= link_to 'javascript:;' do %>
+      <i class="fa fa-users"></i>
+      所有用户
+    <% end %>
+  </li>
+<% end %>
+<% content_for :page_title, '所有用户' %>
+<% content_for :box_title, '用户列表' %>
+<% content_for :box_footer do %>
+  <%#= paginate @posts %>
+<% end %>
