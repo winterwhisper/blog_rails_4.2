@@ -1,6 +1,6 @@
 class Admin::DashboardController < Admin::BaseController
 
-  layout 'admin_dashboard'
+  layout 'admin_no_box'
 
   before_action :authorize_dashboard
 

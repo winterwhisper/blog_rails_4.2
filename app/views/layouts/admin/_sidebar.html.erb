@@ -9,14 +9,16 @@
       </div>
     </div>
 
-    <form action="#" method="get" class="sidebar-form">
+    <%= form_for(:search, url: admin_searchs_path, method: :get, html: { class: 'sidebar-form' }) do |f| %>
       <div class="input-group">
-        <input type="text" name="q" class="form-control" placeholder="搜索..."/>
-          <span class="input-group-btn">
-            <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
-          </span>
+        <%= f.text_field :q, class: 'form-control', placeholder: '搜索...' %>
+        <span class="input-group-btn">
+          <%= f.button class: 'btn btn-flat' do %>
+            <i class="fa fa-search"></i>
+          <% end %>
+        </span>
       </div>
-    </form>
+    <% end %>
 
     <ul class="sidebar-menu">
       <li class="header">导航</li>

@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     resource :change_passwords, only: [:new, :create],
                                 path_names: { new: '' },
                                 path: :change_password
+    resource :searchs, only: [:show], path: :search
 
     controller :dashboard do
       get :home, action: :home
