@@ -47,4 +47,8 @@ class Admin::TagsController < Admin::BaseController
       params.require(:tag).permit(:value)
     end
 
+    def authorize_tag
+      authorize @tag
+    end
+
 end

@@ -20,26 +20,26 @@
 
     <ul class="sidebar-menu">
       <li class="header">导航</li>
-      <li class="<%= controller_name == 'dashboard' and action_name == 'home' ? 'active' : '' %>">
+      <li class="<%= render_sidenav_highlight('dashboard', 'home') %>">
         <%= link_to admin_root_path do %>
           <i class='fa fa-dashboard'></i>
           <span>仪表盘</span>
         <% end %>
       </li>
-      <li class="treeview <%= controller_name == 'posts' and params[:tag].blank? ? 'active' : '' %>">
+      <li class="treeview <%= render_sidenav_highlight('posts', nil, params[:tag].blank?) %>">
         <%= link_to 'javascript:;' do %>
           <i class='fa fa-files-o'></i>
           <span>文章</span>
           <i class="fa fa-angle-left pull-right"></i>
         <% end %>
         <ul class="treeview-menu">
-          <li class="<%= action_name == 'index' and params[:tag].blank? ? 'active' : '' %>">
+          <li class="<%= render_sidenav_highlight('posts', 'index', params[:tag].blank?) %>">
             <%= link_to admin_posts_path do %>
               <i class='fa fa-circle-o'></i>
               <span>所有文章</span>
             <% end %>
           </li>
-          <li class="<%= action_name == 'new' and params[:tag].blank? ? 'active' : '' %>">
+          <li class="<%= render_sidenav_highlight('posts', 'new', params[:tag].blank?) %>">
             <%= link_to new_admin_post_path do %>
               <i class='fa fa-circle-o'></i>
               <span>新建文章</span>
@@ -47,20 +47,20 @@
           </li>
         </ul>
       </li>
-      <li class="treeview <%= controller_name == 'tags' ? 'active' : '' %>">
+      <li class="treeview <%= render_sidenav_highlight('tags') %>">
         <%= link_to 'javascript:;' do %>
           <i class='fa fa-tags'></i>
           <span>标签</span>
           <i class="fa fa-angle-left pull-right"></i>
         <% end %>
         <ul class="treeview-menu">
-          <li class="<%= action_name == 'index' ? 'active' : '' %>">
+          <li class="<%= render_sidenav_highlight('tags', 'index') %>">
             <%= link_to admin_tags_path do %>
               <i class='fa fa-circle-o'></i>
               <span>所有标签</span>
             <% end %>
           </li>
-          <li class="<%= action_name == 'new' ? 'active' : '' %>">
+          <li class="<%= render_sidenav_highlight('tags', 'new') %>">
             <%= link_to new_admin_tag_path do %>
               <i class='fa fa-circle-o'></i>
               <span>新建标签</span>
@@ -68,12 +68,12 @@
           </li>
         </ul>
       </li>
-      <li class="<%= controller_name == 'comments' ? 'active' : '' %>">
+      <li class="<%= render_sidenav_highlight('comments') %>">
         <%= link_to admin_comments_path do %>
           <i class='fa fa-comments-o'></i> <span>评论</span>
         <% end %>
       </li>
-      <li>
+      <li class="<%= render_sidenav_highlight('users') %>">
         <%= link_to 'javascript:;' do %>
           <i class='fa fa-users'></i> <span>用户</span>
         <% end %>
