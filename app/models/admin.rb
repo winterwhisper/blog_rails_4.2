@@ -1,5 +1,7 @@
 class Admin < ActiveRecord::Base
 
+  mount_uploader :avatar, AvatarUploader
+
   has_secure_password
 
   attr_accessor :remember_token
