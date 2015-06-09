@@ -47,11 +47,15 @@ gem 'bcrypt', '~> 3.1.7'
 group :development do
   # 过滤日志里静态文件相关的日志
   gem 'quiet_assets'
-  # debug
-  unless ENV["RM_INFO"]
-    gem 'pry-byebug'
-    gem 'pry-rails'
-  end
+end
+
+group :test do
+  # 数据伪造
+  gem 'faker'
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'launchy'
+  gem 'selenium-webdriver'
 end
 
 group :development, :test do
@@ -63,5 +67,17 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  # test framework
+  gem 'rspec-rails'
+  # 预构件
+  gem 'factory_girl_rails'
+
+  # debug
+  unless ENV["RM_INFO"]
+    gem 'pry-byebug'
+    gem 'pry-rails'
+  end
 end
+
 
