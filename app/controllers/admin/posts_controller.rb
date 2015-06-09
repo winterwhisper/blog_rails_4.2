@@ -52,28 +52,18 @@ class Admin::PostsController < Admin::BaseController
     end
 
     def set_post_tag
-      if @post.new_record?
-        init_tag
-      else
+      unless @post.new_record?
         tags = @post.tags
-        if tags
-          @tag = Tag.new(value: tags.pluck(:value).join(Tag::SPLIT_STR))
-        else
-          init_tag
-        end
+        @tag = tags.pluck(:value).join(Tag::SPLIT_STR) if tags
       end
     end
 
     def post_params
-      params.require(:post).permit(:title, :body, tags_attributes: [:value])
+      params.require(:post).permit(:title, :body, :pending_tags)
     end
 
     def filter_posts_by_tag
       @posts = @posts.joins(:tags).where('tags.value = ?', params[:tag])
-    end
-
-    def init_tag
-      @tag = @post.tags.new
     end
 
 end

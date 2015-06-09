@@ -9,6 +9,10 @@ class Tag < ActiveRecord::Base
 
   before_save :strip_value
 
+  def self.split_tags_value(tag)
+    tag.split(Tag::SPLIT_STR)
+  end
+
   private
 
     def strip_value
