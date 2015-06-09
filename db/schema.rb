@@ -46,11 +46,11 @@ ActiveRecord::Schema.define(version: 20150608032652) do
   add_index "post_tags", ["tag_id"], name: "index_post_tags_on_tag_id"
 
   create_table "posts", force: :cascade do |t|
-    t.string   "title",          null: false
-    t.text     "body",           null: false
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.integer  "comments_count"
+    t.string   "title",                      null: false
+    t.text     "body",                       null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "comments_count", default: 0, null: false
   end
 
   create_table "tags", force: :cascade do |t|
