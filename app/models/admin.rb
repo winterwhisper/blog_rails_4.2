@@ -6,9 +6,10 @@ class Admin < ActiveRecord::Base
 
   attr_accessor :remember_token
 
-  validates_uniqueness_of :name
-  validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+  validates_presence_of :name, :nickname
+  validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, allow_blank: true
   validates_uniqueness_of :email, case_sensitive: false
+  validates_uniqueness_of :name
 
   before_save :downcase_email
 
@@ -42,7 +43,7 @@ class Admin < ActiveRecord::Base
   private
 
   def downcase_email
-    self.email = email.downcase
+    self.email.downcase! if email
   end
 
 
