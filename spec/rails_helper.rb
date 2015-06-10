@@ -51,4 +51,6 @@ RSpec.configure do |config|
 
   # 使用FactoryGirl简短语法
   config.include FactoryGirl::Syntax::Methods
+
+  config.include SessionsHelper, type: :controller
 end
