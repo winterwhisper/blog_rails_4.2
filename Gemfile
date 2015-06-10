@@ -51,7 +51,7 @@ end
 
 group :test do
   # 数据伪造
-  gem 'faker'
+  gem 'ffaker'
   gem 'capybara'
   gem 'database_cleaner'
   gem 'launchy'

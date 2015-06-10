@@ -3,17 +3,13 @@ require 'rails_helper'
 describe Comment do
 
   it '当username, email, body有值，email格式正确时有效' do
-    comment = Comment.new(
-      username: 'foobar',
-      email: 'foobar@foobar.com',
-      body: 'foobar'
-    )
+    comment = build(:comment)
     comment.valid?
     expect(comment).to be_valid
   end
 
   it 'body为空值时无效' do
-    comment = Comment.new(body: nil)
+    comment = build(:comment, body: nil)
     comment.valid?
     expect(comment.errors[:body]).to include("can't be blank")
   end
@@ -25,7 +21,7 @@ describe Comment do
   end
 
   it 'email格式不正确时无效' do
-    comment = Comment.new(email: 'foobar')
+    comment = build(:comment, email: 'foobar')
     comment.valid?
     expect(comment.errors[:email]).to include('is invalid')
   end
