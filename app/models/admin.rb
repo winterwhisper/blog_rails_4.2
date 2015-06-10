@@ -8,8 +8,7 @@ class Admin < ActiveRecord::Base
 
   validates_presence_of :name, :nickname
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, allow_blank: true
-  validates_uniqueness_of :email, case_sensitive: false
-  validates_uniqueness_of :name
+  validates_uniqueness_of :name, :email, case_sensitive: false
 
   before_save :downcase_email
 
@@ -42,9 +41,9 @@ class Admin < ActiveRecord::Base
 
   private
 
-  def downcase_email
-    self.email.downcase! if email
-  end
+    def downcase_email
+      self.email.downcase! if email
+    end
 
 
 end
