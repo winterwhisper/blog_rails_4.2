@@ -14,7 +14,7 @@ describe Admin::PostsController do
         expect(assigns(:posts)).to eq [post2]
       end
       it '渲染 :index 模板' do
-        get :index
+        get :index, tag: 'foobar tag'
         expect(response).to render_template :index
       end
     end
