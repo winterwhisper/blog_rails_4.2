@@ -56,8 +56,6 @@ group :test do
   gem 'database_cleaner'
   gem 'launchy'
   gem 'selenium-webdriver'
-  gem 'spork-rails'
-  gem "guard-spork"
 end
 
 group :development, :test do
@@ -76,8 +74,6 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-commands-rspec'
-
-  gem 'ruby_gntp'
 
   # debug
   unless ENV["RM_INFO"]
