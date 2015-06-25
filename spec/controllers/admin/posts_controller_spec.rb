@@ -2,45 +2,41 @@ require 'rails_helper'
 
 describe Admin::PostsController do
   describe '未登录前' do
+    after { expect(response).to require_login }
+    
     describe 'GET #index' do
       it '需要登录' do
         get :index
-        expect(response).to require_login
       end
     end
 
     describe 'GET #new' do
       it '需要登录' do
         get :new
-        expect(response).to require_login
       end
     end
 
     describe 'GET #edit' do
       it '需要登录' do
         get :edit, id: create(:post)
-        expect(response).to require_login
       end
     end
 
     describe 'POST #create' do
       it '需要登录' do
         post :create, post: attributes_for(:post)
-        expect(response).to require_login
       end
     end
 
     describe 'PATCH #update' do
       it '需要登录' do
         patch :update, id: create(:post), post: attributes_for(:post)
-        expect(response).to require_login
       end
     end
 
     describe 'DELETE #destroy' do
       it '需要登录' do
         delete :destroy, id: create(:post)
-        expect(response).to require_login
       end
     end
   end
