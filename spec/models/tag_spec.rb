@@ -3,15 +3,11 @@ require 'rails_helper'
 describe Tag do
   describe 'validators' do
     it 'value有值时有效' do
-      expect(build(:tag)).to be_valid
+      expect(build_stubbed(:tag)).to be_valid
     end
 
     context 'validates_presence_of' do
-      it 'value为空值时无效' do
-        tag = build(:tag, value: nil)
-        tag.valid?
-        expect(tag.errors[:value]).to include("can't be blank")
-      end
+      it { should validate_presence_of(:value) }
     end
   end
 

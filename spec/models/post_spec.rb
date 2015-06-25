@@ -3,21 +3,12 @@ require 'rails_helper'
 describe Post do
   describe 'validators' do
     it 'title/body都有值时有效' do
-      expect(build(:post)).to be_valid
+      expect(build_stubbed(:post)).to be_valid
     end
 
     context 'validates_presence_of' do
-      it 'title为空值时无效' do
-        post = build(:post, title: nil)
-        post.valid?
-        expect(post.errors[:title]).to include("can't be blank")
-      end
-
-      it 'body为空值时无效' do
-        post = build(:post, body: nil)
-        post.valid?
-        expect(post.errors[:body]).to include("can't be blank")
-      end
+      it { should validate_presence_of(:title) }
+      it { should validate_presence_of(:body) }
     end
   end
 

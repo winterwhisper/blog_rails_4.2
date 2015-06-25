@@ -4,62 +4,25 @@ describe Admin do
   describe 'validators' do
     it 'name, nickname, password, email有值，且email格式正确，email, name不重复时有效' do
       create(:admin)
-      admin = build(:admin)
+      admin = build_stubbed(:admin)
       admin.valid?
       expect(admin).to be_valid
     end
 
-    context 'validates_presence_of' do
-      it 'name为空值时无效' do
-        admin = build(:admin, name: nil)
-        admin.valid?
-        expect(admin.errors[:name]).to include("can't be blank")
-      end
-
-      it 'nickname为空值时无效' do
-        admin = build(:admin, nickname: nil)
-        admin.valid?
-        expect(admin.errors[:nickname]).to include("can't be blank")
-      end
+    context 'validate_presence_of' do
+      it { should validate_presence_of(:name) }
+      it { should validate_presence_of(:nickname) }
     end
 
     context 'validates_format_of' do
-      it 'email格式不正确时无效' do
-        admin = build(:admin, email: 'foobar')
-        admin.valid?
-        expect(admin.errors[:email]).to include('is invalid')
-      end
-
-      it 'email为空值时不做格式验证' do
-        admin = Admin.new
-        admin.valid?
-        expect(admin.errors.keys).not_to include(:email)
-      end
+      it { should allow_value(nil).for(:email) }
+      it { should_not allow_value('foobar').for(:email) }
     end
 
     context 'validates_uniqueness_of' do
-      before do
-        @admin = create(:admin)
-      end
-
-      it 'name重复时无效' do
-        another_admin = build(:admin, name: @admin.name)
-        another_admin.valid?
-        expect(another_admin.errors[:name]).to include('has already been taken')
-      end
-
-
-      it 'email重复时无效' do
-        another_admin = build(:admin, email: @admin.email)
-        another_admin.valid?
-        expect(another_admin.errors[:email]).to include('has already been taken')
-      end
-
-      it 'email验证唯一性时不区分大小写' do
-        another_admin = build(:admin, email: @admin.email.upcase)
-        another_admin.valid?
-        expect(another_admin.errors[:email]).to include('has already been taken')
-      end
+      subject { build(:admin) }
+      it { should validate_uniqueness_of(:name).case_insensitive }
+      it { should validate_uniqueness_of(:email).case_insensitive }
     end
   end
 
