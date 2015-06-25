@@ -78,28 +78,25 @@ describe Admin::PostsController do
     end
 
     describe 'GET #new' do
+      before { get :new }
       it '新建一个Post实例并分配给@post' do
-        get :new
         expect(assigns(:post)).to be_a_new(Post)
       end
 
-      it '渲染 :new 模板' do
-        get :new
-        expect(assigns(response)).to render_template :new
-      end
+      it { should render_template :new }
     end
 
     describe 'GET #edit' do
-      let(:post) { create(:post) }
-      it '按照传入的id取出对应的Post实例并分配给@post' do
-        get :edit, id: post
-        expect(assigns(:post)).to eq post
+      before do
+        @post = create(:post)
+        get :edit, id: @post
       end
 
-      it '渲染 :edit 模板' do
-        get :edit, id: post
-        expect(response).to render_template :edit
+      it '按照传入的id取出对应的Post实例并分配给@post' do
+        expect(assigns(:post)).to eq @post
       end
+
+      it { should render_template :edit }
     end
 
     describe 'POST #create' do
@@ -136,41 +133,33 @@ describe Admin::PostsController do
                title: 'patch test title',
                body: 'patch test body')
       end
+
       context '所传属性值正确时' do
+        before { patch :update, id: post, post: attributes_for(:post) }
+
         it '更新指定post实例' do
-          patch :update, id: post, post: attributes_for(:post)
           expect(assigns(:post)).to eq(post)
         end
 
         it '更新实例指定的字段值' do
-          patch :update, id: post, post: attributes_for(:post)
           post.reload
           expect(post.title).to eq(attributes_for(:post)[:title])
           expect(post.body).to eq(attributes_for(:post)[:body])
         end
 
-        it '重定向到#index' do
-          patch :update, id: post, post: attributes_for(:post)
-          expect(response).to redirect_to admin_posts_url
-        end
+        it { should redirect_to admin_posts_url }
       end
 
       context '所传属性值不正确时' do
+        before { patch :update, id: post, post: attributes_for(:post, title: nil) }
+
         it '没有修改指定post实例的值' do
-          patch :update, id: post,
-                post: attributes_for(:post,
-                                     title: nil)
           post.reload
           expect(post.title).to eq('patch test title')
           expect(post.body).to_not eq(attributes_for(:post)[:body])
         end
 
-        it '重新渲染 :edit 模板' do
-          patch :update, id: post,
-                post: attributes_for(:post,
-                                     title: nil)
-          expect(response).to render_template :edit
-        end
+        it { should render_template :edit }
       end
     end
 
