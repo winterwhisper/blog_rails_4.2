@@ -2,41 +2,42 @@ require 'rails_helper'
 
 describe Admin::PostsController do
   describe '未登录前' do
+    let(:_post) { |example| create(:post) unless example.metadata[:skip_let] }
     after { expect(response).to require_login }
-    
+
     describe 'GET #index' do
-      it '需要登录' do
+      it '需要登录', :skip_let do
         get :index
       end
     end
 
     describe 'GET #new' do
-      it '需要登录' do
+      it '需要登录', :skip_let do
         get :new
       end
     end
 
     describe 'GET #edit' do
       it '需要登录' do
-        get :edit, id: create(:post)
+        get :edit, id: _post
       end
     end
 
     describe 'POST #create' do
-      it '需要登录' do
+      it '需要登录', :skip_let do
         post :create, post: attributes_for(:post)
       end
     end
 
     describe 'PATCH #update' do
       it '需要登录' do
-        patch :update, id: create(:post), post: attributes_for(:post)
+        patch :update, id: _post, post: attributes_for(:post)
       end
     end
 
     describe 'DELETE #destroy' do
       it '需要登录' do
-        delete :destroy, id: create(:post)
+        delete :destroy, id: _post
       end
     end
   end
