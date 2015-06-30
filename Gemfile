@@ -56,6 +56,7 @@ group :test do
   gem 'database_cleaner'
   gem 'launchy'
   gem 'selenium-webdriver'
+  gem 'poltergeist'
   gem 'shoulda-matchers', require: false
 end
 

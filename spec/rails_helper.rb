@@ -5,6 +5,7 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'shoulda/matchers'
 require 'ffaker'
+require 'capybara/poltergeist'
 Dir[File.dirname(__FILE__) + "/support/**/*.rb"].each {|f| require f}
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -51,8 +52,29 @@ RSpec.configure do |config|
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
 
+  config.use_transactional_fixtures = false
+
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :truncation
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
+
+  config.filter_run focus: true
+  config.run_all_when_everything_filtered = true
+
   # 使用FactoryGirl简短语法
   config.include FactoryGirl::Syntax::Methods
 
   config.include SessionsHelper, type: :controller
+
+  config.include LoginMacros, type: :feature
 end
+
+Capybara.javascript_driver = :poltergeist
