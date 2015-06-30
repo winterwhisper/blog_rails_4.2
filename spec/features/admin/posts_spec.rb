@@ -51,6 +51,7 @@ feature '后台文章管理', js: true do
 
     scenario '用错误的值修改文章' do
       edit_post_action(nil)
+      post.reload
       expect(post.title).to_not be_nil
       expect(post.title).to eq post.title
       within 'div.alert-danger' do
@@ -69,6 +70,7 @@ feature '后台文章管理', js: true do
       expect {
         click_link '删除'
         accept_alert('确定要删除吗？')
+        sleep 1
       }.to change(Post, :count).by(-1)
       expect(current_path).to eq admin_posts_path
       within 'div.alert-success' do
