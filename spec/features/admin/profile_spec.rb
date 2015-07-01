@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature '后台用户资料管理', js: true, focus: true, driver: :selenium do
+feature '后台用户资料管理', js: true, driver: :selenium do
 
   given(:admin) { create(:admin) }
 
