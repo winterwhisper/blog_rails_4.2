@@ -13,15 +13,13 @@
       <%= render_form_error_message(@post, :body) %>
     </div>
   </div>
-  <%= f.fields_for :tags, @tag do |tf| %>
-    <div class="form-group <%= render_form_error_class(@tag, :value) %>">
-      <%= tf.label :value, '标签', class: 'col-xs-12 col-sm-1 control-label' %>
-      <div class="col-xs-12 col-sm-11 col-md-10">
-        <%= tf.text_field :value, class: 'form-control', id: 'tags-field' %>
-        <%= render_form_error_message(@tag, :value) %>
-      </div>
+  <div class="form-group <%= render_form_error_class(@post, :pending_tags) %>">
+    <%= f.label :pending_tags, '标签', class: 'col-xs-12 col-sm-1 control-label' %>
+    <div class="col-xs-12 col-sm-11 col-md-10">
+      <%= f.text_field :pending_tags, value: @tag, class: 'form-control', id: 'tags-field' %>
+      <%= render_form_error_message(@post, :pending_tags) %>
     </div>
-  <% end %>
+  </div>
   <%= f.submit '提交', class: 'btn btn-success col-sm-offset-1 col-md-offset-1 col-xs-12 col-sm-1' %>
 <% end %>
 

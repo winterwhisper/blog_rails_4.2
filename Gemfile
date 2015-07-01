@@ -47,11 +47,17 @@ gem 'bcrypt', '~> 3.1.7'
 group :development do
   # 过滤日志里静态文件相关的日志
   gem 'quiet_assets'
-  # debug
-  unless ENV["RM_INFO"]
-    gem 'pry-byebug'
-    gem 'pry-rails'
-  end
+end
+
+group :test do
+  # 数据伪造
+  gem 'ffaker'
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'launchy'
+  gem 'selenium-webdriver'
+  gem 'poltergeist'
+  gem 'shoulda-matchers', require: false
 end
 
 group :development, :test do
@@ -61,7 +67,21 @@ group :development, :test do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 
+  # test framework
+  gem 'rspec-rails'
+  # 预构件
+  gem 'factory_girl_rails'
+  gem 'guard-rspec'
+
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'spring-commands-rspec'
+
+  # debug
+  unless ENV["RM_INFO"]
+    gem 'pry-byebug'
+    gem 'pry-rails'
+  end
 end
+
 

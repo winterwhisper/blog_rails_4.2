@@ -40,8 +40,7 @@ class Admin::SessionsController < Admin::BaseController
     end
 
     def user_not_authorized(exception)
-      flash[:warning] = exception.message
-      redirect_to request.referrer || admin_root_url
+      redirect_to request.referrer || action_name == 'destroy' ? admin_login_url : admin_root_url
     end
 
 end

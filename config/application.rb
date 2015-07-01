@@ -35,6 +35,17 @@ module Demo
     # generator不自动生成helper及assets相关文件
     config.generators.assets = false
     config.generators.helper = false
+
+    config.generators do |g|
+      g.test_framework :rspec,
+        fixtures: true,
+        view_specs: false,
+        helper_specs: false,
+        routing_specs: false,
+        controller_specs: true,
+        request_specs: false
+      g.fixture_replacement :factory_girl, dir: 'spec/factories'
+    end
   end
 end
 
